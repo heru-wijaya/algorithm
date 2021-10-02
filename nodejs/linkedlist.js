@@ -53,6 +53,34 @@ class linkedList {
         this.size++;
     }
 
+    addOnIndex (element, i) {
+        if (i > 0 && i > this.size) {
+            console.log("greater than size");
+            return false;
+        } else {
+            let node = new Node(element);
+            let curr = this.head;
+            let prev;
+
+            let indexList = 0;
+
+            if (i == 0) {
+                node.next = this.head;
+                this.head = node;
+            } else {
+                while (indexList < i) {
+                    indexList++;
+                    prev = curr;
+                    curr = prev.next;
+                }
+    
+                node.next = curr;
+                prev.next = node;
+            }
+            this.size++;
+        }
+    }
+
     removeElement(element) {
         let curr = this.head;
         let prev = null;
@@ -69,6 +97,28 @@ class linkedList {
             curr = curr.next;
         }
     }
+
+    removeFromIndex(i) {
+        if (i > 0 && i > this.size) {
+            console.log("greater than size");
+        } else {
+            let curr = this.head;
+            let prev = null;
+            if (i == 0) {
+                this.head = curr.next;
+            } else {
+                let index = 0;
+
+                while(index < i) {
+                    index++
+                    prev = curr;
+                    curr = curr.next;
+                }
+
+                prev.next = curr.next;
+            }
+        }
+    }
 }
 
 let abc = new linkedList();
@@ -76,6 +126,10 @@ let abc = new linkedList();
 abc.add(10);
 abc.add(5);
 abc.add(4);
+abc.addOnIndex(8, 2);
 abc.add(3);
+abc.printList();
+console.log("--------------")
 abc.removeElement(5);
+abc.removeFromIndex(2);
 abc.printList();
