@@ -119,6 +119,19 @@ class linkedList {
             }
         }
     }
+
+    reverse() {
+        let curr = this.head;
+        let prev = null;
+        while (curr.next) {
+            let save = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = save;
+        }
+        this.head = curr;
+        curr.next = prev;
+    }
 }
 
 let abc = new linkedList();
@@ -128,8 +141,12 @@ abc.add(5);
 abc.add(4);
 abc.addOnIndex(8, 2);
 abc.add(3);
+abc.add(11);
 abc.printList();
-console.log("--------------")
+console.log("after remove: ")
 abc.removeElement(5);
 abc.removeFromIndex(2);
+abc.printList();
+console.log("after reverse: ")
+abc.reverse();
 abc.printList();
